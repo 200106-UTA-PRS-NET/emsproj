@@ -25,7 +25,7 @@ steps:
     --configuration $(buildConfiguration)
     --logger trx
     --no-build
-    --result-directory $(Build.ArtifactStagingDirectory)/test/
+    --results-directory $(Build.ArtifactStagingDirectory)/test/
     /p:CollectCoverage=true
   workingDirectory: $(pathtosolution)
   displayName: 'dotnet test'
