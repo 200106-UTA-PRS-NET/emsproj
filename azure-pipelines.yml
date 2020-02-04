@@ -23,10 +23,10 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: 'EMSPipelinetoken'
     projectName: 'EMS'
-    extraProperties: 
+    extraProperties: |
       sonar.cs.opencover.reportPaths="$(Build.ArtifactStagingDirectory)/coverage/*"
       sonar.cs.vstest.reportPaths="$(Build.ArtifactStagingDirectory)/test/*.trx"
-      sonar.exclusions=**/wwwroot/**/*
+      sonar.exclusions=**/wwwroot/lib/**/*
 
 
 - script: 
