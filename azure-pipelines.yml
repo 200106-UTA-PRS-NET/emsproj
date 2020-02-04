@@ -25,7 +25,7 @@ steps:
     projectName: 'EMS'
     extraProperties: |
       sonar.cs.opencover.reportsPaths="$(Build.ArtifactStagingDirectory)/coverage/*"
-      sonar.cs.vstest.reportPaths="$(Build.ArtifactStagingDirectory)/test/*.trx"
+      sonar.cs.vstest.reportsPaths="$(Build.ArtifactStagingDirectory)/test/*.trx"
       sonar.exclusions=**/wwwroot/lib/**/*
 
 
