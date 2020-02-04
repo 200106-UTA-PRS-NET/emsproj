@@ -3,6 +3,7 @@
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
+## CI Start
 trigger:
 - master
 
@@ -63,10 +64,14 @@ steps:
     zipAfterPublish: true
     workingDirectory: '$(pathtosolution)'
   displayName: 'dotnet publish + zip'
+####--- CI END
 
+## CDelivery Start taking artifact as an input
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'Visual Studio Enterprise with MSDN(581982a8-2cbb-485e-b313-4da4b27d42f1)'
     appType: 'webAppLinux'
     appName: 'emsutapipeline'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
+    ## CD ends
