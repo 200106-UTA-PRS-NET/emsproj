@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using EmployeeLib;
 using EmployeeLib.Abstractions;
 using EMS_Web.Models;
@@ -91,7 +88,6 @@ namespace EMS_Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    // TODO: Add insert logic here
                     EmployeeLib.Employee emp = new Employee()
                     {
                         Fname = employee.Fname,
@@ -130,8 +126,7 @@ namespace EMS_Web.Controllers
         {
             try
             {
-                // TODO: Add update logic here
-
+                
                 return RedirectToAction(nameof(Index));
             }
             catch

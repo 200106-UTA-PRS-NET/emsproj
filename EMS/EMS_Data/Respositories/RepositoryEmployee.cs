@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using EMS_Data.Models;
 using EmployeeLib;
 using EmployeeLib.Abstractions;
@@ -12,7 +11,7 @@ namespace EMS_Data.Repository
 {
         public class RepositoryEmployee : IRepositoryEmployee<EmployeeLib.Employee>
     {
-        EmployeeDbContext db;
+        readonly EmployeeDbContext  db;
         public RepositoryEmployee()
         {
              db = new EmployeeDbContext();
@@ -59,7 +58,6 @@ namespace EMS_Data.Repository
             else
             {
                 Console.WriteLine($"Employee with this Id {employee.Id} does not exists");
-                return;
             }
         }
 
@@ -74,7 +72,6 @@ namespace EMS_Data.Repository
             else
             {
                 Console.WriteLine($"Employee with this Id {id} does not exists");
-                return;
             }
         }
     }
