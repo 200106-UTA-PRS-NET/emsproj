@@ -23,7 +23,7 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: 'EMSPipelinetoken'
     projectName: 'EMS'
-    extraProperties: 
+    extraProperties: |
       sonar.cs.opencover.reportPaths="$(Build.ArtifactStagingDirectory)/coverage/*"
       sonar.cs.vstest.reportPaths="$(Build.ArtifactStagingDirectory)/test/*.trx"
       sonar.exclusions=**/wwwroot/lib/**/*
@@ -40,6 +40,8 @@ steps:
     --no-build
     --results-directory $(Build.ArtifactStagingDirectory)/test/
     /p:CollectCoverage=true
+    /p:CoverletOutputFormat=opencover
+    /p:CoverletOutput="$(Build.ArtifactStagingDirectory)/coverage/"
   workingDirectory: $(pathtosolution)
   displayName: 'dotnet test'
 - task: DotNetCoreCLI@2
