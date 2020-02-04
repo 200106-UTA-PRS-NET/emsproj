@@ -16,6 +16,19 @@ variables:
   pathtotest: 'EMS/Test'
 
 steps:
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'EMSSonarServiceConnection'
+    organization: '200106-uta-prs-net'
+    scannerMode: 'MSBuild'
+    projectKey: 'EMSPipelinetoken'
+    projectName: 'EMS'
+    extraProperties: 
+      sonar.cs.opencover.reportPaths="$(Build.ArtifactStagingDirectory)/coverage/*"
+      sonar.cs.vstest.reportPaths="$(Build.ArtifactStagingDirectory)/test/*.trx"
+      sonar.exclusions=**/wwwroot/lib/**/*
+
+
 - script: 
     dotnet build --configuration $(buildConfiguration)
   workingDirectory: $(pathtosolution)
@@ -29,3 +42,13 @@ steps:
     /p:CollectCoverage=true
   workingDirectory: $(pathtosolution)
   displayName: 'dotnet test'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: '$(pathtotest)'
+    workingDirectory: '$(pathtosolution)'
+
+- task: SonarCloudAnalyze@1
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
