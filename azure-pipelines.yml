@@ -29,3 +29,8 @@ steps:
     /p:CollectCoverage=true
   workingDirectory: $(pathtosolution)
   displayName: 'dotnet test'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: '$(pathtotest)'
+    workingDirectory: '$(pathtosolution)'
